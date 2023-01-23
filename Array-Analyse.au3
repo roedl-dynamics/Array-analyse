@@ -111,5 +111,25 @@ Func arrayBefuellen()
 		mittelWert()
 		groessterWert()
 		kleinsterWert()
+		gestutztMittel()
 	EndIf
+EndFunc
+
+Func gestutztMittel()
+	Local $wert = UBound($werte)
+	;MsgBox(0,"Größe des Arrays",$wert)
+	Local $x = ($wert *0.2) ; wert der als Prozent oben und Untern heraus genommen wird
+	Local $y = $wert-($x+1)
+	;MsgBox(0,"x:",$x)
+	;MsgBox(0,"y:",$y)
+
+	Local $summe = 0
+	For $i = $x to $y
+		$summe = $summe + $werte[$i]
+		Local $anzahl = $wert-(2*$x)
+		;Global $DiffMittelwert = $summe/$anzahl
+	Next
+
+	Global $DiffMittelwert = $summe/$anzahl
+	MsgBox(0,"",$DiffMittelwert)
 EndFunc
