@@ -117,20 +117,21 @@ EndFunc
 
 Func gestutztMittel()
 	_ArraySort($werte)
-	Local $wert = UBound($werte)
-	;MsgBox(0,"Größe des Arrays",$wert)
-	Local $x = Round($wert *0.2,0) ; wert der als Prozent oben und Untern heraus genommen wird
-	Local $y = $wert-($x+1)
-	;MsgBox(0,"x:",$x)
-	;MsgBox(0,"y:",$y)
-
+	_ArrayDisplay($werte)
+	Local $groesseArray = UBound($werte)
+	;MsgBox(0,"ArrayGröße",$groesseArray)
+	Local $x = Round($groesseArray * 0.2,0)
+	;MsgBox(0,"Rausfallende werte(Anzahl): ",$x)
+	Local $y = ($groesseArray-$x)-1 ; bestimmt die obere Grenze
+	MsgBox(0,"Oberegrenze: ",$y)
 	Local $summe = 0
 	For $i = $x to $y
-		$summe = $summe + $werte[$i]
-		Local $anzahl = $wert-(2*$x)
-		;Global $DiffMittelwert = $summe/$anzahl
+		MsgBox(0,"i:",$i)
+		$summe = $summe+$werte[$i]
 	Next
-
-	Global $DiffMittelwert = $summe/$anzahl
-	GUICtrlSetData($Liste,Round($DiffMittelwert,3))
+	MsgBox(0,"Summe: ",$summe)
+	Local $anzahl = $groesseArray - 2*$x
+	MsgBox(0,"Anzahl: ",$anzahl)
+	Local $mittelGest = $summe-$anzahl
+	MsgBox(0,"Gestutzter Mittelwert:",$mittelGest)
 EndFunc
