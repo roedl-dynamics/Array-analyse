@@ -20,7 +20,7 @@ Global $eingabeFeld = GUICtrlCreateInput("",30,30,230,30)
 Global $buttonDialog = GUICtrlCreateButton("...",300,30,70,30 )
 Global $eingabeButton = GUICtrlCreateButton("Berechnungen druchführen",30,100,340,50)
 Global $Liste = GUICtrlCreateList("", 30,170, 340,200)
-Global $werte
+Global $werte ;das Array in dem die Werte gespeichert werden
 
 GUISetState(@SW_SHOWNA)
 While 1
@@ -116,6 +116,7 @@ Func arrayBefuellen()
 EndFunc
 
 Func gestutztMittel()
+	_ArraySort($werte)
 	Local $wert = UBound($werte)
 	;MsgBox(0,"Größe des Arrays",$wert)
 	Local $x = ($wert *0.2) ; wert der als Prozent oben und Untern heraus genommen wird
@@ -131,5 +132,5 @@ Func gestutztMittel()
 	Next
 
 	Global $DiffMittelwert = $summe/$anzahl
-	MsgBox(0,"",$DiffMittelwert)
+	GUICtrlSetData($Liste,Round($DiffMittelwert,3))
 EndFunc
