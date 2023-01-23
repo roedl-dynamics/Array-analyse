@@ -122,13 +122,13 @@ Func gestutztMittel()
 		$werte[$n] = Number($werte[$n])
 	Next
 	_ArraySort($werte)
-	_ArrayDisplay($werte)
+	;_ArrayDisplay($werte)
 	;MsgBox(0,"ArrayGröße",$groesseArray)
 	Local $x = Round(($groesseArray * 0.1+1),0)
-	MsgBox(0,"x:",$x)
+	;MsgBox(0,"x:",$x)
 	;MsgBox(0,"Rausfallende werte(Anzahl): ",$x)
 	Local $y = ($groesseArray-$x) ; bestimmt die obere Grenze
-	MsgBox(0,"Oberegrenze: ",$y)
+	;MsgBox(0,"Oberegrenze: ",$y)
 	Local $summe = 0
 	For $i = $x to $y+1
 		Local $zeilenwert = $werte[$i]
@@ -136,10 +136,11 @@ Func gestutztMittel()
 		$summe = $summe + Number($zeilenwert)
 		$summe = Round($summe,3)
 	Next
-	MsgBox(0,"Summe: ",$summe)
-	MsgBox(0,"Arraygröße: ",$groesseArray)
+	;MsgBox(0,"Summe: ",$summe)
+	;MsgBox(0,"Arraygröße: ",$groesseArray)
 	Local $anzahl = $groesseArray - $x
-	MsgBox(0,"Anzahl: ",$anzahl)
+	;MsgBox(0,"Anzahl: ",$anzahl)
 	Local $mittelGest = $summe/$anzahl
-	MsgBox(0,"Gestutzter Mittelwert:",$mittelGest)
+	;MsgBox(0,"Gestutzter Mittelwert:",$mittelGest)
+	GUICtrlSetData($Liste,"Gestutztesmittel: "&Round($mittelGest,3))
 EndFunc
