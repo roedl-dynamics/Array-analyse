@@ -116,22 +116,27 @@ Func arrayBefuellen()
 EndFunc
 
 Func gestutztMittel()
+	Local $groesseArray = UBound($werte)-1
+	; speichert die Daten aus dem Array als Zahl ab
+	For $n = 0 to $groesseArray
+		$werte[$n] = Number($werte[$n])
+	Next
 	_ArraySort($werte)
 	_ArrayDisplay($werte)
-	Local $groesseArray = UBound($werte)
 	;MsgBox(0,"ArrayGröße",$groesseArray)
-	Local $x = Round($groesseArray * 0.2,0)
+	Local $x = Round(($groesseArray * 0.1)+1,0)
+	MsgBox(0,"x:",$x)
 	;MsgBox(0,"Rausfallende werte(Anzahl): ",$x)
-	Local $y = ($groesseArray-$x)-1 ; bestimmt die obere Grenze
+	Local $y = ($groesseArray-$x) ; bestimmt die obere Grenze
 	MsgBox(0,"Oberegrenze: ",$y)
 	Local $summe = 0
 	For $i = $x to $y
-		MsgBox(0,"i:",$i)
+		MsgBox(0,"i: ",$i)
 		$summe = $summe+$werte[$i]
 	Next
 	MsgBox(0,"Summe: ",$summe)
 	Local $anzahl = $groesseArray - 2*$x
 	MsgBox(0,"Anzahl: ",$anzahl)
-	Local $mittelGest = $summe-$anzahl
+	Local $mittelGest = $summe/$anzahl
 	MsgBox(0,"Gestutzter Mittelwert:",$mittelGest)
 EndFunc
