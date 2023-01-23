@@ -119,7 +119,7 @@ Func gestutztMittel()
 	_ArraySort($werte)
 	Local $wert = UBound($werte)
 	;MsgBox(0,"Größe des Arrays",$wert)
-	Local $x = ($wert *0.2) ; wert der als Prozent oben und Untern heraus genommen wird
+	Local $x = Round($wert *0.2,0) ; wert der als Prozent oben und Untern heraus genommen wird
 	Local $y = $wert-($x+1)
 	;MsgBox(0,"x:",$x)
 	;MsgBox(0,"y:",$y)
