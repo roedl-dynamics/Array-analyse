@@ -118,11 +118,11 @@ EndFunc
 Func gestutztMittel()
 	Local $groesseArray = UBound($werte)-1
 	; speichert die Daten aus dem Array als Zahl ab
-	For $n = 0 to $groesseArray
+		For $n = 0 to $groesseArray
 		$werte[$n] = Number($werte[$n])
 	Next
 	_ArraySort($werte)
-	;_ArrayDisplay($werte)
+	_ArrayDisplay($werte)
 	;MsgBox(0,"ArrayGröße",$groesseArray)
 	Local $x = Round(($groesseArray * 0.1)+1,0) ;Anzahl ausgenommener Werte
 	MsgBox(0,"x:",$x)
@@ -145,21 +145,3 @@ Func gestutztMittel()
 	GUICtrlSetData($Liste,"Gestutztesmittel: "&Round($mittelGest,3))
 EndFunc
 
-Func gestutztMittel2()
- Local $groesseArray = UBound($werte)
- MsgBox(0,"Größe des Arrays: ",$groesseArray)
- ;werte als zahlen speichern
-  For $n = 1 to $groesseArray-1
-		$werte[$n] = Number($werte[$n])
-  Next
-  ;Array sortieren
-  _ArraySort($werte)
-  _ArrayDisplay($werte)
-  ;auszuschließende Werte bestimmen
-  Local $AnzahlAusschliessen = Round($groesseArray * 0.1,0)
-  IF Mod($AnzahlAusschliessen,2) > 0 Then
-	Local $rest = Mod($AnzahlAusschliessen,2)
-	$AnzahlAusschliessen = $AnzahlAusschliessen- $rest
-	EndIf
-	MsgBox(0,"Auszuschließende Werte: ",$AnzahlAusschliessen)
-EndFunc
