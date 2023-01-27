@@ -117,10 +117,6 @@ EndFunc
 
 Func gestutztMittel()
 	Local $groesseArray = UBound($werte)-1
-	; speichert die Daten aus dem Array als Zahl ab
-		For $n = 0 to $groesseArray
-		$werte[$n] = Number($werte[$n])
-	Next
 	_ArraySort($werte)
 	_ArrayDisplay($werte)
 	;MsgBox(0,"ArrayGröße",$groesseArray)
