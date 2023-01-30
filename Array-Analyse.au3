@@ -111,13 +111,13 @@ Func arrayBefuellen()
 		mittelWert()
 		groessterWert()
 		kleinsterWert()
-		gestutzMittel()
+		gestutzMittel2()
 	EndIf
 EndFunc
 
 
 
-Func gestutzMittel()
+Func gestutzMittel2()
 	Local $ArrayGroesse = UBound($werte)-1
 	MsgBox(0,"Arraygröße",$ArrayGroesse)
 	For $n = 1 to $ArrayGroesse-1
