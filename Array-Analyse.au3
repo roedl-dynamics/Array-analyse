@@ -71,7 +71,8 @@ Func summe()
 		ConsoleWrite("$summe="&$summe&@CRLF)
 		ConsoleWrite("i="&$i&@CRLF)
 	Next
-	GUICtrlSetData($Liste,"Summe: "&$summe)
+	;GUICtrlSetData($Liste,"Summe: "&$summe)
+	return $summe
 EndFunc
 
 Func mittelWert()
@@ -107,15 +108,13 @@ Func arrayBefuellen()
 	If $dateiPfad == "" Then
 		GUICtrlSetData($Liste,"Fehler: es wurde kein Dateipfad angegeben")
 	Else
-		summe()
+		GUICtrlSetData($Liste,"Summe: "& summe())
 		mittelWert()
 		groessterWert()
 		kleinsterWert()
 		gestutzMittel2()
 	EndIf
 EndFunc
-
-
 
 Func gestutzMittel2()
 	Local $ArrayGroesse = UBound($werte)-1
