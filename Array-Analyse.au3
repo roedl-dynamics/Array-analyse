@@ -73,9 +73,9 @@ Func summe()
 		$zeilenwert = StringReplace($zeilenwert,",",".")
 		$summe = $summe + Number($zeilenwert)
 		$summe = Round($summe,3)
-		ConsoleWrite("$zeilenwert="&$zeilenwert&@CRLF)
-		ConsoleWrite("$summe="&$summe&@CRLF)
-		ConsoleWrite("i="&$i&@CRLF)
+		;ConsoleWrite("$zeilenwert="&$zeilenwert&@CRLF)
+		;ConsoleWrite("$summe="&$summe&@CRLF)
+		;ConsoleWrite("i="&$i&@CRLF)
 	Next
 	;GUICtrlSetData($Liste,"Summe: "&$summe)
 	return $summe
@@ -123,24 +123,28 @@ Func gestutzMittel()
 	Local $ArrayGroesse = UBound($werte)-1
 	;MsgBox(0,"Arraygröße",$ArrayGroesse)
 	;MsgBox(0,"",$n)
+	Local $x = $werte[0]
+	_ArrayDisplay($werte)
 	_ArraySort($werte)
 	;_ArrayDisplay($werte)
-	Local $startWert = Round($ArrayGroesse*0.2,0)
+	Local $startWert = Round($ArrayGroesse*0.1,0)
+	ConsoleWrite("Startwert: "&$startWert & @CRLF)
 	Local $obereGrenze = $ArrayGroesse-$startWert
 	Local $summe = 0
 	For $i = $startWert to $obereGrenze
 		Local $zeilenwert = $werte[$i]
+		ConsoleWrite("Zeilenwert: "& $zeilenwert&@CRLF)
 		$zeilenwert = StringReplace($zeilenwert,",",".")
 		$summe = $summe + Number($zeilenwert)
-		$summe = Round($summe,3)
+		;$summe = Round($summe,3)
 	Next
 	Local $anzahlBerucksichtigt = $ArrayGroesse-(2*$startWert)
+
 	Local $gestutzt = $summe/$anzahlBerucksichtigt
-	;MsgBox(0,"Startwert: ",$startWert)
-	;MsgBox(0,"Oberegrenze: ",$obereGrenze)
-	;MsgBox(0,"Summe: ",$summe)
-	ConsoleWrite("Startwert: "&$startWert)
-	ConsoleWrite("Obergrenze: "&$obereGrenze)
-	ConsoleWrite("Summe: "&$summe)
-	GUICtrlSetData($Liste,"Gestutztesmittel: "& $gestutzt)
+	$gestutzt = Round($gestutzt,3)
+	ConsoleWrite("Obergrenze: "&$obereGrenze &@CRLF)
+	ConsoleWrite("Summe: "&$summe &@CRLF)
+	ConsoleWrite("Anzahl: "&$anzahlBerucksichtigt)
+	GUICtrlSetData($Liste,"Gestutztesmittel: "& $gestutzt & @CRLF)
+	_ArrayDisplay($werte)
 EndFunc
