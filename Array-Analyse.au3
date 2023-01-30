@@ -111,33 +111,35 @@ Func arrayBefuellen()
 		mittelWert()
 		groessterWert()
 		kleinsterWert()
-		gestutztMittel()
+		gestutzMittel()
 	EndIf
 EndFunc
 
-Func gestutztMittel()
-	Local $groesseArray = UBound($werte)-1
+
+
+Func gestutzMittel()
+	Local $ArrayGroesse = UBound($werte)-1
+	MsgBox(0,"Arraygröße",$ArrayGroesse)
+	For $n = 1 to $ArrayGroesse-1
+		$werte[$n] = Number($werte[$n])
+	Next
+	MsgBox(0,"",$n)
 	_ArraySort($werte)
 	_ArrayDisplay($werte)
-	;MsgBox(0,"ArrayGröße",$groesseArray)
-	Local $x = Round(($groesseArray * 0.1)+1,0) ;Anzahl ausgenommener Werte
-	MsgBox(0,"x:",$x)
-	;MsgBox(0,"Rausfallende werte(Anzahl): ",$x)
-	Local $y = ($groesseArray-$x) ; bestimmt die obere Grenze
-	;MsgBox(0,"Oberegrenze: ",$y)
+	Local $startWert = Round($ArrayGroesse*0.2,0)
+	Local $obereGrenze = $ArrayGroesse-$startWert
 	Local $summe = 0
-	For $i = $x to $y+1
+	For $i = $startWert to $obereGrenze-1
 		Local $zeilenwert = $werte[$i]
 		$zeilenwert = StringReplace($zeilenwert,",",".")
 		$summe = $summe + Number($zeilenwert)
 		$summe = Round($summe,3)
 	Next
+	Local $anzahlBerucksichtigt = $ArrayGroesse-(2*$startWert)
+	Local $gestutzt = $summe/$anzahlBerucksichtigt
+	MsgBox(0,"Startwert: ",$startWert)
+	MsgBox(0,"Oberegrenze: ",$obereGrenze)
 	MsgBox(0,"Summe: ",$summe)
-	MsgBox(0,"Arraygröße: ",$groesseArray)
-	Local $anzahl = $groesseArray - $x
-	MsgBox(0,"Anzahl: ",$anzahl)
-	Local $mittelGest = $summe/$anzahl
-	;MsgBox(0,"Gestutzter Mittelwert:",$mittelGest)
-	GUICtrlSetData($Liste,"Gestutztesmittel: "&Round($mittelGest,3))
+	MsgBox(0,"gestutztes Mittel: ",$gestutzt)
 EndFunc
 
