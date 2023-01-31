@@ -133,10 +133,11 @@ Func gestutzMittel()
 	Local $summe = 0
 	For $i = $startWert to $obereGrenze
 		Local $zeilenwert = $werte[$i]
-		ConsoleWrite("Zeilenwert: "& $zeilenwert&@CRLF)
+		;ConsoleWrite("Zeilenwert: "& $zeilenwert&@CRLF)
 		$zeilenwert = StringReplace($zeilenwert,",",".")
 		$summe = $summe + Number($zeilenwert)
-		;$summe = Round($summe,3)
+		;$summe = $summe + Number($werte[i])
+		$summe = Round($summe,3)
 	Next
 	Local $anzahlBerucksichtigt = $ArrayGroesse-(2*$startWert)
 
