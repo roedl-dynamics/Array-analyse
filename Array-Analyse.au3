@@ -85,9 +85,10 @@ EndFunc
 Func mittelWert()
 	Local $mittelWert
 	Local $summe = summe()
-	$mittelWert = Round($summe/(UBound($werte)-1),3)
+	ConsoleWrite("Arraygröße"&UBound($werte)-1&@CRLF)
+	$mittelWert = Round($summe/(UBound($werte)),3)
 	;$mittelWert = Round($mittelWert,3)
-	;ConsoleWrite("Summe: "&$summe)
+	ConsoleWrite("Summe: "&$summe)
 	;ConsoleWrite("Werte: " & UBound($werte)-1)
 	;ConsoleWrite("Mittelwert:"& $mittelWert)
 	GUICtrlSetData($Liste,"Mittelwert: "&$mittelWert)
@@ -112,7 +113,7 @@ Func dateiAuslesen()
 	;zwischenwerte den Werten zuweisen ohne größe des Arrays
 	For $i = 1 To UBound($zwischenWerte)-1
 		$werte[$i-1] = $zwischenWerte[$i]
-		ConsoleWrite("i:"&$i)
+		;ConsoleWrite("i:"&$i)
 	Next
 	;_ArrayDisplay($werte)
 	GUICtrlSetData($eingabeFeld,$dateiPfad)
@@ -135,16 +136,16 @@ Func gestutzMittel()
 	Local $ArrayGroesse = UBound($werte)-1
 	;MsgBox(0,"Arraygröße",$ArrayGroesse)
 	;MsgBox(0,"",$n)
-	Local $x = $werte[0]
+	Local $x = UBound($werte)-1
 	;_ArrayDisplay($werte)
 	_ArraySort($werte)
-	_ArrayDisplay($werte)
+	;_ArrayDisplay($werte)
 	Local $startWert = Round($ArrayGroesse*0.1,0)
-	ConsoleWrite("Startwert: "&$startWert & @CRLF)
+	;ConsoleWrite("Startwert: "&$startWert & @CRLF)
 	Local $obereGrenze = $ArrayGroesse-$startWert
 	Local $summe = 0
 	For $i = $startWert to $obereGrenze
-		Local $zeilenwert = $werte[$i]
+		;Local $zeilenwert = $werte[$i]
 		;ConsoleWrite("Zeilenwert: "& $zeilenwert&@CRLF)
 		;$zeilenwert = StringReplace($zeilenwert,",",".")
 		;$summe = $summe + Number($zeilenwert)
@@ -152,7 +153,7 @@ Func gestutzMittel()
 		$summe = $werte[$i] + $summe
 		$summe = Round($summe,3)
 	Next
-	Local $anzahlBerucksichtigt = $ArrayGroesse-(2*$startWert)
+	Local $anzahlBerucksichtigt = ($ArrayGroesse-(2*$startWert))+1
 
 	Local $gestutzt = $summe/$anzahlBerucksichtigt
 	$gestutzt = Round($gestutzt,3)
