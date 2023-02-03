@@ -29,7 +29,7 @@ While 1
 		Case $GUI_EVENT_CLOSE
 			ExitLoop
 		Case $buttonDialog
-			arrayAuslesen()
+			dateiAuslesen()
 		Case $eingabeButton
 			arrayBefuellen()
 	EndSwitch
@@ -92,11 +92,13 @@ Func mittelWert()
 	GUICtrlSetData($Liste,"Mittelwert: "&$mittelWert)
 EndFunc
 
-Func arrayAuslesen()
+;liest die werte aus der Ausgewählten Datei in das Arra ein
+Func dateiAuslesen()
 	Local $dateiPfad = FileOpenDialog("Wählen sie eine CSV-Datei aus", @WindowsDir & "\", "CSV(*.csv)", BitOR($FD_FILEMUSTEXIST, $FD_MULTISELECT))
 	_FileReadToArray($dateiPfad,$werte) ; ließt die Datei in ein Array aus
-	;_ArrayDisplay($werte)
+	_ArrayDisplay($werte)
 	For $zeile = 1 To Ubound($werte)-1
+		ConsoleWrite("zeile: "&$zeile)
 		Local $zahl = StringSplit($werte[$zeile],";")
 	Next
 	;Convertieren in Nummern
@@ -143,9 +145,9 @@ Func gestutzMittel()
 
 	Local $gestutzt = $summe/$anzahlBerucksichtigt
 	$gestutzt = Round($gestutzt,3)
-	ConsoleWrite("Obergrenze: "&$obereGrenze &@CRLF)
-	ConsoleWrite("Summe: "&$summe &@CRLF)
-	ConsoleWrite("Anzahl: "&$anzahlBerucksichtigt)
+	;ConsoleWrite("Obergrenze: "&$obereGrenze &@CRLF)
+	;ConsoleWrite("Summe: "&$summe &@CRLF)
+	;ConsoleWrite("Anzahl: "&$anzahlBerucksichtigt)
 	GUICtrlSetData($Liste,"Gestutztesmittel: "& $gestutzt & @CRLF)
 	_ArrayDisplay($werte)
 EndFunc
