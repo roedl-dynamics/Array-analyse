@@ -63,9 +63,7 @@ Func kleinsterWert()
 EndFunc
 
 Func summe()
-	;Local $i
 	Local $summe = 0
-	;_ArrayDisplay($werte)
 	For $i = 0 to UBound($werte)-1
 		$summe = $summe + $werte[$i]
 		ConsoleWrite("Summe: "&$summe&@CRLF)
@@ -84,7 +82,6 @@ Func mittelWert()
 	Local $summe = summe()
 	ConsoleWrite("Arraygröße"&UBound($werte)-1&@CRLF)
 	$mittelWert = Round($summe/(UBound($werte)),3)
-	;$mittelWert = Round($mittelWert,3)
 	ConsoleWrite("Summe: "&$summe)
 	;ConsoleWrite("Werte: " & UBound($werte)-1)
 	;ConsoleWrite("Mittelwert:"& $mittelWert)
