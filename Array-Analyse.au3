@@ -65,7 +65,7 @@ EndFunc
 Func summe()
 	;Local $i
 	Local $summe = 0
-	_ArrayDisplay($werte)
+	;_ArrayDisplay($werte)
 	For $i = 0 to UBound($werte)-1
 		$summe = $summe + $werte[$i]
 		ConsoleWrite("Summe: "&$summe&@CRLF)
