@@ -38,11 +38,8 @@ WEnd
 
 ; Methoden
 Func groessterWert()
-	For $n = 1 to $werte[0]
-		$werte[$n] = Number($werte[$n])
-	Next
-	Local $highest = $werte[1]
-    For $i = 1 to $werte[0]
+	Local $highest = $werte[0]
+    For $i = 0 to UBound($werte)-1
 		If $werte[$i] > $highest then
 			$highest = $werte[$i]
 		EndIf
@@ -56,7 +53,7 @@ EndFunc
 
 Func kleinsterWert()
 	Local $smallest = $werte[0]
-	For $i = 1 to $werte[0]
+	For $i = 0 to UBound($werte)-1
 		If $werte[$i] < $smallest then
 			$smallest = $werte[$i]
 		EndIf
@@ -66,19 +63,19 @@ Func kleinsterWert()
 EndFunc
 
 Func summe()
-	Local $i
+	;Local $i
 	Local $summe = 0
+	_ArrayDisplay($werte)
 	For $i = 0 to UBound($werte)-1
-		;$summe = $summe+$werte[$i]
-		Local $zeilenwert = $werte[$i]
-		$zeilenwert = StringReplace($zeilenwert,",",".")
-		$summe = $summe + Number($zeilenwert)
+		$summe = $summe + $werte[$i]
+		ConsoleWrite("Summe: "&$summe&@CRLF)
 		$summe = Round($summe,3)
-		;ConsoleWrite("$zeilenwert="&$zeilenwert&@CRLF)
-		;ConsoleWrite("$summe="&$summe&@CRLF)
-		;ConsoleWrite("i="&$i&@CRLF)
+
+		ConsoleWrite("$summe="&$summe&@CRLF)
+		ConsoleWrite("i: "&$i&@CRLF)
 	Next
 	;GUICtrlSetData($Liste,"Summe: "&$summe)
+	;ConsoleWrite("Summe: "&$summe)
 	return $summe
 EndFunc
 
@@ -100,13 +97,13 @@ Func dateiAuslesen()
 	Local $zwischenWerte
 	_FileReadToArray($dateiPfad,$zwischenWerte) ; ließt die Datei in ein Array aus
 	;_ArrayDisplay($zwischenWerte)
-	For $zeile = 1 To Ubound($zwischenWerte)-1
-		;ConsoleWrite("zeile: "&$zeile)
+	For $zeile = 1	To Ubound($zwischenWerte)-1
+		ConsoleWrite("zeile: "&$zeile)
 		Local $zahl = StringSplit($zwischenWerte[$zeile],";")
 	Next
 	;Convertieren in Nummern
 	For $n = 1 to UBound($zwischenWerte)-1
-		$zwischenWerte[$n] = Number($zwischenWerte[$n])
+		$zwischenWerte[$n] = Number(StringReplace($zwischenWerte[$n],",","."))
 	Next
 	Local $grosse = UBound($zwischenWerte)-1
 	Global $werte[$grosse]
@@ -154,7 +151,6 @@ Func gestutzMittel()
 		$summe = Round($summe,3)
 	Next
 	Local $anzahlBerucksichtigt = ($ArrayGroesse-(2*$startWert))+1
-
 	Local $gestutzt = $summe/$anzahlBerucksichtigt
 	$gestutzt = Round($gestutzt,3)
 	;ConsoleWrite("Obergrenze: "&$obereGrenze &@CRLF)
